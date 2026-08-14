@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Travel Guide</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f8f5ef;
+    color:#333;
+}
+
+/* เมนู */
+nav{
+    background:#ff9933;
+    padding:15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#000080;
+}
+
+.festival{
+    text-align:center;
+    max-width:800px;
+    margin:0 auto;
+}
+
+/* หน้าแรก */
+.hero{
+    height:100vh;
+    background:url('https://images.unsplash.com/photo-1564507592333-c60657eea523') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-content{
+    background:rgba(0,0,0,0.6);
+    padding:30px;
+    border-radius:15px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    max-width:800px;
+}
+
+/* Section */
+section{
+    position: relative;
+    padding:80px 10%;
+}
+
+section::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:0;
+}
+
+section>*{
+    position:relative;
+    z-index:1;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#ff6600;
+    font-size:36px;
+}
+
+/* Attractions */
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.card img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    color:#ff6600;
+    margin-bottom:10px;
+}
+
+/* โหมดปกติ */
+.card,
+.food-card,
+.about{
+    background:white;
+    color:#333;
+}
+
+.card p,
+.card h3,
+.food-card p,
+.food-card h3,
+.about p,
+.about h3{
+    color:#333;
+}
+
+/* Dark Mode */
+.dark .card,
+.dark .food-card,
+.dark .about{
+    background:#1f1f1f;
+    color:white;
+}
+
+.dark .card p,
+.dark .card h3,
+.dark .food-card p,
+.dark .food-card h3,
+.dark .about p,
+.dark .about h3{
+    color:white;
+}
+
+/* Food */
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.food-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.food-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+/* About */
+.about{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.about img{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:20px;
+    border:5px solid #ff9933;
+}
+
+footer{
+    background:#ff9933;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+
+#themeBtn{
+    padding:8px 15px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-left:15px;
+}
+
+body{
+    background:#f8f5ef;
+    color:#333;
+}
+
+.dark{
+    background:#111;
+    color:white;
+}
+
+.dark nav{
+    background:#222;
+}
+
+.dark .card,
+.dark .food-card,
+.dark .about{
+    background:#1f1f1f;
+    color:white;
+}
+
+.dark h2,
+.dark h3{
+    color:#ff9933;
+}
+
+.dark footer{
+    background:#222;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#attractions">Attractions</a>
+    <a href="#more">Post Card</a>
+    <a href="#food">Food & Culture</a>
+    <a href="#about">About Me</a>
+
+    <button id="themeBtn" onclick="toggleTheme()">
+        🌙 Dark Mode
+    </button>
+    <button onclick="toggleMusic()">🎵 เพลง</button>
+</nav>
+
+<!-- Home -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Welcome to India</h1>
+        <p>
+            ประเทศอินเดียเป็นประเทศที่มีความโดดเด่นด้านวัฒนธรรม ประวัติศาสตร์
+            ศาสนา และสถานที่ท่องเที่ยวอันงดงาม มีอาหารที่มีเอกลักษณ์
+            และเทศกาลที่มีสีสันดึงดูดนักท่องเที่ยวจากทั่วโลก
+        </p>
+    </div>
+</section>
+
+<!-- Attractions -->
+<section id="attractions">
+    <h2>สถานที่ท่องเที่ยว (Attractions)</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523">
+            <div class="card-content">
+                <h3>Taj Mahal</h3>
+                <p>
+                    อนุสรณ์สถานแห่งความรักที่มีชื่อเสียงที่สุดในโลก<br>
+                    ตั้งอยู่ที่เมืองอัครา ประเทศอินเดีย<br>
+                    สร้างขึ้นโดยจักรพรรดิชาห์ชะฮัน<br>
+                    ได้รับการขึ้นทะเบียนเป็นมรดกโลกจากยูเนสโก<br>
+                    เป็นหนึ่งใน 7 สิ่งมหัศจรรย์ของโลกยุคใหม่
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41">
+            <div class="card-content">
+                <h3>Jaipur</h3>
+                <p>
+                    เมืองสีชมพูแห่งรัฐราชสถาน<br>
+                    มีพระราชวังและป้อมปราการสวยงาม<br>
+                    เป็นส่วนหนึ่งของเส้นทาง Golden Triangle<br>
+                    โดดเด่นด้วยสถาปัตยกรรมแบบราชปุต<br>
+                    เหมาะสำหรับผู้ชื่นชอบประวัติศาสตร์
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f">
+            <div class="card-content">
+                <h3>Mumbai</h3>
+                <p>
+                    เมืองเศรษฐกิจที่ใหญ่ที่สุดของอินเดีย<br>
+                    เป็นศูนย์กลางอุตสาหกรรมภาพยนตร์บอลลีวูด<br>
+                    มีสถานที่สำคัญอย่าง Gateway of India<br>
+                    เต็มไปด้วยแหล่งช้อปปิ้งและอาหารอร่อย<br>
+                    เป็นเมืองที่ผสมผสานความทันสมัยและวัฒนธรรม
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="more">
+    <h2>Post Card</h2>
+    <div class="card-container">
+
+        <div class="card">
+            <img src="in.png">
+            <div class="card-content">
+                <h3>India</h3>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fin.png">
+            <div class="card-content">
+                <h3>Finland</h3>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="ita.png">
+            <div class="card-content">
+                <h3>Italy</h3>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Food & Culture -->
+<section id="food">
+    <h2>อาหารและวัฒนธรรม (Food & Culture)</h2>
+
+    <div class="food-grid">
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976">
+            <h3>Masala Dosa</h3>
+            <p>แป้งเครปกรอบสไตล์อินเดียใต้ สอดไส้มันฝรั่งปรุงเครื่องเทศ</p>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7">
+            <h3>Biryani</h3>
+            <p>ข้าวหมกเครื่องเทศชื่อดังที่ได้รับความนิยมทั่วประเทศอินเดีย</p>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398">
+            <h3>Chicken Tikka Masala</h3>
+            <p>ไก่ย่างหมักเครื่องเทศเสิร์ฟพร้อมซอสครีมมาซาลาเข้มข้น</p>
+        </div>
+
+    </div>
+
+    <br><br>
+
+<div class="festival">
+    <h3>เทศกาลสำคัญ</h3>
+    <p>
+        <strong>Holi Festival (เทศกาลสาดสี)</strong><br>
+        เป็นเทศกาลที่มีชื่อเสียงของประเทศอินเดีย จัดขึ้นในช่วงเดือนมีนาคมของทุกปี
+        ผู้คนจะออกมาร่วมเฉลิมฉลองด้วยการสาดผงสีหลากสีใส่กัน
+        เพื่อแสดงถึงความสุข ความสามัคคี และการเริ่มต้นสิ่งใหม่ ๆ
+        ถือเป็นหนึ่งในเทศกาลที่นักท่องเที่ยวจากทั่วโลกนิยมเดินทางมาชม
+    </p>
+</div>
+
+<img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce"
+    alt="Holi Festival"
+    style="width:100%; max-width:700px; display:block; margin:20px auto; border-radius:15px;">
+</section>
+
+<!-- About -->
+<section id="about">
+    <h2>ผู้จัดทำ (About Me)</h2>
+
+    <div class="about">
+        <img src="Wuttichai.jpg" alt="ผู้จัดทำ">
+
+        <h3>ชื่อ-นามสกุล : วุฒิชัย พลธร</h3>
+        <p>ระดับชั้น : ปวช.2/10</p>
+        <p>สาขาวิชา : เทคโนโลยีธุรกิจดิจิทัล</p>
+        <p>วิทยาลัย : วิทยาลัยเทคโนโลยีเพชรเกษม</p>
+    </div>
+</section>
+
+<footer>
+    © 2026 India Travel Guide
+</footer>
+
+<audio id="bgMusic" loop>
+    <source src="india-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+
+    const btn = document.getElementById("themeBtn");
+
+    if(document.body.classList.contains("dark")){
+        btn.innerHTML = "☀️ Light Mode";
+    }else{
+        btn.innerHTML = "🌙 Dark Mode";
+    }
+}
+
+function toggleMusic(){
+    let music = document.getElementById("bgMusic");
+
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
+</script>
+</body>
+</html>
